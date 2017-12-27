@@ -17,7 +17,12 @@ from django.conf.urls import include
 from django.conf.urls import url
 from django.contrib import admin
 
+from snippets import views
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('snippets.urls')),
+    url(r'^users/$', views.UserList.as_view()),
+    url(r'^users/(?P<pk>\d+)/$', views.UserDetail.as_view()),
+    url(r'^snippets/', include('snippets.urls')),
+    url(r'^api-auth/', include('rest_framework.urls')),
 ]
