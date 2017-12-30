@@ -20,9 +20,11 @@ from django.contrib import admin
 from snippets import views
 
 urlpatterns = [
+    url(r'^$', views.api_root),
     url(r'^admin/', admin.site.urls),
     url(r'^users/$', views.UserList.as_view()),
     url(r'^users/(?P<pk>\d+)/$', views.UserDetail.as_view()),
     url(r'^snippets/', include('snippets.urls')),
+    url(r'^snippets/(?P<pk>\d+)/highlight/$', views.SnippetHighlight.as_view()),
     url(r'^api-auth/', include('rest_framework.urls')),
 ]
